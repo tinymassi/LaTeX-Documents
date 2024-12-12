@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}
+\usepackage{calc}
+\usepackage{graphicx}
+
+\usepackage{hyperref}
+
+\begin{document}
+	\begin{center}
+		Massimo Ginella \\
+		CS24 Elementary Computer Organization \\
+		First Arduino Lab \\
+		Lab time: 8 Hours \vspace{0.5cm} \\
+	\end{center}
+	
+	\begin{center}
+		\textbf{Exercise 1 \& 2:}  \\
+		I completed both the Blinking LED exercise as well as the push button LED exercise. Nothing of interest happened. \vspace{0.5cm} \\
+		
+		\textbf{Binary LED Project:} \vspace{0.1cm} \\
+		\setlength{\fboxrule}{8pt}
+		\begin{figure}[h]
+			\centering
+			\fbox{\includegraphics[width=10cm]{/home/massimo/CS-24/Arduino_Labs/Lab_1/IMG_0746.jpg}} % Specify the path and filename
+			\caption{Wiring View} % Optional caption
+		\end{figure}
+		
+		\begin{figure}[t!]
+			\centering
+			\fbox{\includegraphics[width=12cm]{/home/massimo/CS-24/Arduino_Labs/Lab_1/IMG_0745.jpg}} % Specify the path and filename
+			\caption{Working circuit with letter 'i' being represented in binary.} % Optional caption
+			\label{fig:my_label} % Optional label for referencing
+		\end{figure}
+		
+		
+		
+	\end{center}
+	
+	The overall experience was challenging but fun. I really enjoyed figuring out where each wire would connect, where each LED would be placed, and what pins on the arduino would be used. It was almost meditative at times. Getting started with the coding side of things was a bit tricky as the libraries I was used to utilizing in C++ were not available through the arduino IDE. I wanted to use a vector in my code, but wasn't sure if we were allowed to use external packages for our programs so I just used an array instead. I found the information I learned in the LED and push button exercises prior to this lab to be quite useful in wiring the circuit as well as coding its functionality. Writing the software was probably the most challenging part as I had to do a lot of string manipulation which led to some challenging debugging. Figuring out how to write a program that would be constantly looping millions of times per second was quite difficult as well since the state of the button would send thousands of values if pressed for even the slightest amount of time. To fix this issue I put a delay of 200 milliseconds between button presses to avoid the lights changing twice after a single press of the button. Overall, I am really excited to work more with this arduino kit both on CS-24 Labs as well as with some personal projects I hope to pursue.\\
+	
+	
+	
+\end{document}  

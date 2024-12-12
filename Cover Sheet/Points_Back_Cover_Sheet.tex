@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+\usepackage{calc}
+
+\usepackage{hyperref}
+
+\begin{document}
+	\begin{center}
+		Massimo Ginella \\
+		CS24 Elementary Computer Organization \\
+		Midterms Points Back Cover Sheet. \\
+		Score: 100/128 \vspace{0.8cm} \\
+	\end{center}
+	
+	
+	\textbf{Question 1: Give equivalent RISC-V/rv code for the following function. Use the function name as a label for your function. (Note that you may assume that size will always be greater than two)} \\
+	
+	I got a 30/40 on this question. The reason stated on the exam was that I exceeded the bounds of the array within the first loop iteration. This is not true. Since `i' is initially set to two, my code cannot exceed the bounds into the a[-7] and a[-2] indexes. This proves that my code structure is perfectly fine. On top of this, when I take tests, I do them twice. What I mean by this is that after I take the test the first time, I'll take some scratch paper, cover my answers, and do the test again to minimize the potential for small errors. Luckily, I wrote my second attempt of this question on the back of the first page and made it more tidy for better legibility. This is important because on the first page I utilized the a1 register instead of the a0 register for the address of a[0]. However, on the back, I correctly used the a0 register therefore proving that I understand the convention of using the function parameter registers in order, and that I simply miswrote the registers on the first attempt. With all of this being said, I believe I should receive full points back for this question since I wrote everything perfectly on the back of page one which was still done during the test.  \vspace{1cm} \\
+	
+	\textbf{Question 2: Draw the circuit for the sum bit of a (3, 2) adder.} \\
+	
+	I got a 13/15 on this question. The reason stated on the exam was due to the fact that I didn't connect my NOT gates to the AND gates, even though the circuit is correct in its structure. Given that not connecting the NOT gates to the AND gates communicates the same idea and creates the same truth table as connecting the NOT gates to the AND gates, I feel that a deduction of 2 points is unjust for this question. What I drew communicates full understanding of the concept of truth tables and circuits, just with a different method of notation that I learned/preferred while I was studying. \vspace{1cm} \\
+	
+	
+	\textbf{Question 4: What is the purpose of ``the stack''?} \\
+	
+	
+	\textbf{Original Answer:} To spill registers that hold important values to the program. We can later restore the values from the stack into the same registers.  \\
+	
+	I got a 2/5 on this question. The reason stated was due to a lack of mentioning functions and their relation to the stack. I feel that a 3 point deduction for this answer is unjust as I answered exactly what the question was asking regarding what the stack is at its core (Memory that you store register values into, and retrieve when needed). While writing this, given that we use the stack primarily in functions, I thought this information was already implied as I wrote my answer. If the question was rephrased as ``What is the purpose of ``the stack'' and when/where do we use it?'', I would have happily given the extra information since the question specifies that it wants details about its area of use as well, and not just what it is. \vspace{1cm} \\
+	
+	
+	\textbf{Question 11: Show the sequence of RISC-V instructions to safely restore the Return Address register from the stack (assuming it was the only thing saved)} \\
+	
+	I got a 4/8 on this question. The reason stated was due to the fact that I utilized the a0 register instead of the ra register in my hand drawn code. In my hand drawn code, I wrote the following: \\
+	
+	\begin{center}
+	lw a0, 0(sp)  \\
+	addi sp, sp, 4  \\
+	jr ra  \\
+	\end{center}
+	
+	In the heat of the moment, I misread the question and thought it said `argument register' rather than `return address register' for some reason (This is obviously my fault) but I think half off the question for this is a bit much. I clearly demonstrate that I understand how to load information from the stack, and that it must be collapsed with a positive value that is equal to the bytes allocated. The only thing wrong is that I used the wrong register. I feel that a deduction of maybe 2 points would be more fair in this case given that I did clearly misread the question which is my fault, but still understood the underlying concept.  \vspace{1cm} \\
+	
+	\textbf{Question 12: Comment the following function, then describe in one sentence what it does. This function has one parameter n, and n is larger than 0.}  \\
+		
+	
+	\textbf{Original Answer:} The value of t1 increases by the addition of its preceding value for every iteration of the loop.  \\
+	
+	I got a 20/25 on this question. I correctly drew a table detailing all the register values as the program ran. I also correctly commented all the code demonstrating full understanding of RISC-V instructions including the code structure. What I said in my answer technically isn't wrong as it is true that the value of t1 increases by the sum of its preceding value (which is already the sum of the two preceding values). I feel that a deduction of 20\% of the possible points due to this explanation is a bit much, especially given that this class is not based upon the ability to describe the pattern that a program makes, and rather based upon the understanding of RISC-V code which I demonstrated. \vspace{1cm} \\
+	
+	\begin{center}
+		\textbf{Conclusion:} \\
+	\end{center}
+	
+	Overall, I feel that a lot of my errors on this test were due to a lack of detail that I failed to demonstrate both while reading questions and writing answers. I am extremely disappointed in my performance on this midterm as I worked hard to understand all these concepts but fell short when it came to the quality of the answers I wrote. I hold myself to a high standard when it comes to academics and this test certainly fell way short of that. As I mentioned while talking with you, I am very determined to get an A in this class and am driven to 100\% the final exam. I would greatly appreciate if you would take the time to understand my point of view on these questions and restore some points.  \vspace{0.75cm} \\
+	
+	\begin{center}
+	\textbf{What I learned:} \\
+	\end{center}
+	\begin{itemize}
+		\item Include more detail in answers. Even more than I may perceive as necessary.
+		\item Read questions more carefully. (This is something that I have always struggled with and sometimes stragglers slip through the cracks.)
+		\item Keep notation similar to what is discussed in lecture.
+		\item Ask Steve if im giving enough information in my answers or if I need more.
+	\end{itemize}
+	
+	
+	
+	
+
+	
+\end{document}          

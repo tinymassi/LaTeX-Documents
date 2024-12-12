@@ -1,0 +1,573 @@
+\documentclass[12pt]{article}
+\usepackage{calc}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+
+
+\rhead{Massimo Ginella}
+
+\begin{document}
+	\begin{center}
+		\textbf{CS24 Elementary Computer Organization} \\
+		\textbf{Floating Point and Karnaugh Map Problems} \vspace{0.5cm}
+	\end{center}
+	
+	
+	
+	\noindent \fbox{\textbf{1.}} 
+	 \ Give the float (32 bit) representation of the following values. Your final answer should be in hexadecimal. \vspace{1cm} \\
+	 
+	 \textbf{a)} \ \textbf{14.125}
+	 
+	 
+	\begin{center}
+		
+		\begin{tabular}{ |c|c|c|c| } 
+			\hline
+			\textbf{Divide Whole Num by 2} & \textbf{Result} & \textbf{Remainder?}  \\
+			\hline
+			14/2 & 7.0 &  0 \\ 
+			\hline
+			7/2  & 3.5 &  1 \\ 
+			\hline
+			3/2  & 1.5 &  1 \\ 
+			\hline
+			1/2  & 0.5 &  1 \\
+			\hline
+		\end{tabular}  \vspace{0.4cm} \\
+		
+		
+		\textbf{Whole Number Binary Representation:} \\
+		1110 \vspace{1cm} \\
+		
+		\begin{tabular}{ |c|c|c|c| } 
+			\hline
+			\textbf{Multiply Decimal by 2} & \textbf{Result} & \textbf{Whole number?}  \\
+			\hline
+			0.125 $\times$ 2 & 0.25 &  0 \\ 
+			\hline
+			0.25  $\times$ 2 & 0.5  &  0 \\ 
+			\hline
+			0.5   $\times$ 2 & 1.0 &   1 \\ 
+			\hline 
+		\end{tabular}  \vspace{0.4cm} \\
+	
+		
+		\textbf{Decimal Binary Representation:} \\
+		001 \vspace{1cm} \\
+		
+		\textbf{Fixed Point Notation:} \\
+		1110.001 \vspace{0.2cm} \\
+		
+		= \vspace{0.2cm}\\
+		
+		1.11000 $\times 2^3$ \vspace{2cm} \\
+		
+		
+	\end{center}
+	
+	\noindent \textbf{Exponent} = 127 + 3 = 130 = 10000010  \\
+	\textbf{Mantissa} = 110001  \\
+	\textbf{Sign} = 0 (Positive Decimal)  \\
+
+	\begin{center}
+		Fit the following values into the following format: \vspace{0.25cm} \\
+		
+		\begin{tabular}{ |c|c|c| }
+			\hline
+			Sign (1 bit) & Exponent (8 bits) & Mantissa (23 bits) \\
+			\hline
+			0            & 10000010          & 10000010000000000000000  \\
+			\hline
+		\end{tabular} \vspace{1cm} \\
+		
+	
+		14.125 = 01000010100001000000000000000000  \vspace{0.5cm} \\
+		
+		In Hexadecimal: \\
+		=  \\
+		\fbox{\textbf{0X41620000}}  \vspace{2cm} \\
+	
+	\end{center}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	\textbf{b)} \ \textbf{-7.53125}
+	
+	
+	\begin{center}
+		
+		\begin{tabular}{ |c|c|c|c| } 
+			\hline
+			\textbf{Divide Whole Num by 2} & \textbf{Result} & \textbf{Remainder?}  \\
+			\hline
+			7/2  & 3.5  &  1 \\ 
+			\hline
+			3/2  & 1.5  &  1 \\ 
+			\hline
+			1/2  & 0.5  &  0 \\ 
+			\hline
+		\end{tabular} \vspace{0.4cm} \\
+		
+		
+		
+		\textbf{Whole Number Binary Representation:} \\
+		111 \vspace{1cm} \\
+		
+		\begin{tabular}{ |c|c|c|c| } 
+			\hline
+			\textbf{Multiply Decimal by 2} & \textbf{Result} & \textbf{Whole number?}  \\
+			\hline
+			0.53125 $\times$ 2  & 1.0625 &  1 \\ 
+			\hline
+			0.0625  $\times$ 2  & 0.125  &  0 \\
+			\hline
+			0.125   $\times$ 2  & 0.25   &  0 \\ 
+			\hline
+			0.25    $\times$ 2  & 0.5    &  0 \\ 
+			\hline
+			0.5     $\times$ 2  & 1.0    &  1 \\ 
+			\hline
+		\end{tabular} \vspace{0.6cm} \\
+		
+		\newpage
+		
+		
+		\textbf{Decimal Binary Representation:} \\
+		10001 \vspace{1cm} \\
+		
+		\textbf{Fixed Point Notation:} \\
+		111.10001 \vspace{0.2cm} \\
+		
+		= \vspace{0.2cm}\\
+		
+		1.1110001 $\times 2^2$ \vspace{2cm} \\
+		
+		
+	\end{center}
+	
+	\noindent \textbf{Exponent} = 127 + 2 = 129 = 10000001  \\
+	\textbf{Mantissa} = 1110001  \\
+	\textbf{Sign} = 1 (Negative Decimal)  \\
+	
+	\begin{center}
+		Fit the following values into the following format: \vspace{0.25cm} \\
+		
+		\begin{tabular}{ |c|c|c| }
+			\hline
+			Sign (1 bit) & Exponent (8 bits) & Mantissa (23 bits) \\
+			\hline
+			1            & 10000001          & 11100010000000000000000 \\
+			\hline
+		\end{tabular} \vspace{1cm} \\
+		
+		
+		-7.53125 = 11000000111100010000000000000000 \vspace{0.5cm} \\
+		
+		In Hexadecimal: \\
+		=  \\
+		\fbox{\textbf{0XC0F10000}}  \vspace{2cm} \\
+		
+	\end{center} 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	\textbf{c)} \ \textbf{8675.309}
+	
+	
+	\begin{center}
+		
+		\begin{tabular}{ |c|c|c|c| } 
+			\hline
+			\textbf{Divide Whole Num by 2} & \textbf{Result} & \textbf{Remainder?}  \\
+			\hline
+			8675/2  & 4337.5  &  1 \\ 
+			\hline
+			4337/2  & 2168.5  &  1 \\ 
+			\hline
+			2168/2  & 1084.0  &  0 \\ 
+			\hline
+			1084/2  & 542.0   &  0 \\
+			\hline
+			542/2   & 271.0   &  0 \\
+			\hline
+			271/2   & 135.5   &  1 \\
+			\hline
+			135/2   & 67.5    &  1 \\
+			\hline
+			67/2    & 33.5    &  1 \\
+			\hline
+			33/2    & 16.5    &  1 \\
+			\hline
+			16/2    & 8.0     &  0 \\
+			\hline
+			8/2     & 4.0     &  0 \\
+			\hline
+			4/2     & 2.0     &  0 \\
+			\hline
+			2/2     & 1.0     &  0 \\
+			\hline
+			1/2     & 0.5     &  1 \\
+			\hline
+		\end{tabular} \vspace{0.4cm} \\
+		
+		
+		
+		\textbf{Whole Number Binary Representation:} \\
+		1000111100011 \vspace{1cm} \\
+		
+		\begin{tabular}{ |c|c|c|c| } 
+			\hline
+			\textbf{Multiply Decimal by 2} & \textbf{Result} & \textbf{Whole number?}  \\
+			\hline
+			0.309 $\times$ 2  & 0.618 &  0 \\ 
+			\hline
+			0.618  $\times$ 2  & 1.236  &  1 \\
+			\hline
+			0.236   $\times$ 2  & 0.472   &  0 \\ 
+			\hline
+			0.472    $\times$ 2  & 0.944    &  0 \\ 
+			\hline
+			0.944     $\times$ 2  & 1.888    &  1 \\ 
+			\hline
+			0.888     $\times$ 2  & 1.776    &  1 \\ 
+			\hline
+			0.776     $\times$ 2  & 1.552    &  1 \\ 
+			\hline
+			0.552     $\times$ 2  & 1.104    &  1 \\ 
+			\hline
+			0.104     $\times$ 2  & 0.208    &  0 \\ 
+			\hline
+			0.208     $\times$ 2  & 0.416   &  0 \\ 
+			\hline
+			0.416     $\times$ 2  & 0.832    &  0 \\ 
+			\hline
+			0.832     $\times$ 2  & 1.664    &  1 \\ 
+			\hline
+			0.664     $\times$ 2  & 1.328    &  1 \\ 
+			\hline
+			0.328     $\times$ 2  & 0.656   &  0 \\ 
+			\hline
+			0.656     $\times$ 2  & 1.312    &  1 \\ 
+			\hline
+			0.312     $\times$ 2  & 0.624    &  0 \\ 
+			\hline
+		\end{tabular} \vspace{0.6cm} \\
+		
+		\newpage
+		
+		
+		\textbf{Decimal Binary Representation:} \\
+		010011110001101 \vspace{1cm} \\
+		
+		\textbf{Fixed Point Notation:} \\
+		10000111100011.0100111100 \vspace{0.2cm} \\
+		
+		= \vspace{0.2cm}\\
+		
+		1.00001111000110100111100 $\times 2^{13}$ \vspace{0.5cm} \\
+		
+		
+	\end{center}
+	
+	\noindent \textbf{Exponent} = 127 + 13 = 140 = 10001100  \\
+	\textbf{Mantissa} = 00001111000110100111100  \\
+	\textbf{Sign} = 0 (Positive Decimal)  \\
+	
+	\begin{center}
+		Fit the following values into the following format: \vspace{0.25cm} \\
+		
+		\begin{tabular}{ |c|c|c| }
+			\hline
+			Sign (1 bit) & Exponent (8 bits) & Mantissa (23 bits) \\
+			\hline
+			0            & 10001100          & 00001111000110100111100 \\
+			\hline
+		\end{tabular} \vspace{1cm} \\
+		
+		
+		8675.309 = 01000110000001111000110100111100 \vspace{0.5cm} \\
+		
+		In Hexadecimal: \\
+		=  \\
+		\fbox{\textbf{0X46078D3C}}  \vspace{2cm} \\
+		
+	\end{center}
+	
+	
+	
+	
+	\newpage
+	
+	
+	
+	
+	\noindent \fbox{\textbf{2.}} 
+	\ Give the decimal representation of the following 32bit float values. \vspace{0.5cm} \\
+	
+	
+	\textbf{a) \ 00111111000001000000000000000000} \vspace{0.5cm}
+	
+	\noindent \textbf{Exponent} = 01111110 - 127 = 126 - 127 = -1 \\
+	\textbf{Mantissa} = 00001  \\
+	\textbf{Sign} = 0 (Positive Decimal)  \vspace{0.1cm} \\
+	
+	
+	\begin{center}
+		
+		Use the following formula to convert to decimal representation:  \vspace{0.5cm} \\
+		
+		$(-1)^{sign} \times (1 + mantissa) \times 2^{exponent} $ \\
+		
+		=  \\
+		
+		$(-1)^{0} \times (1 + .00001) \times 2^{-1} $  \\
+		
+		=  \\
+		
+		
+		$(-1)^{0} \times (1.03125) \times 2^{-1} $  \\
+		
+		=  \\
+		
+		\fbox{\textbf{0.515625}} \vspace{1cm}  \\
+		
+	\end{center}
+	
+	
+	
+	
+	
+	
+	
+	\textbf{b) \ 01000010110111100000000000000000} \vspace{0.5cm}
+	
+	\noindent \textbf{Exponent} = 10000101 - 127 = 133 - 127 = 6 \\
+	\textbf{Mantissa} = 101111  \\
+	\textbf{Sign} = 0 (Positive Decimal)  \vspace{0.1cm} \\
+	
+	
+	\begin{center}
+		
+		Use the following formula to convert to decimal representation:  \vspace{0.5cm} \\
+		
+		$(-1)^{sign} \times (1 + mantissa) \times 2^{exponent} $ \\
+		
+		=  \\
+		
+		$(-1)^{0} \times (1 + .101111) \times 2^{6} $  \\
+		
+		=  \\
+		
+		
+		$(-1)^{0} \times (1.7343) \times 2^{6} $  \\
+		
+		=  \\
+		
+		\fbox{\textbf{110.99}} \vspace{0.7cm}  \\
+		
+	\end{center}
+	
+	
+	
+	
+	
+	\textbf{c) \ 11000010111110100100000000000000} \vspace{0.5cm}
+	
+	\noindent \textbf{Exponent} = 10000101 - 127 = 133 - 127 = 6 \\
+	\textbf{Mantissa} = 111101001  \\
+	\textbf{Sign} = 1 (Negative Decimal)  \vspace{0.1cm} \\
+	
+	
+	\begin{center}
+		
+		Use the following formula to convert to decimal representation:  \vspace{0.5cm} \\
+		
+		$(-1)^{sign} \times (1 + mantissa) \times 2^{exponent} $ \\
+		
+		=  \\
+		
+		$(-1)^{1} \times (1 + .111101001) \times 2^{6} $  \\
+		
+		=  \\
+		
+		
+		$(-1)^{1} \times (1.953125) \times 2^{6} $  \\
+		
+		=  \\
+		
+		\fbox{\textbf{-125.0}} \vspace{0.7cm}  \\
+		
+	\end{center}
+	
+	
+	
+	\newpage
+	
+	
+	
+	
+	
+	\noindent \fbox{\textbf{3.}} 
+	\ Give the equation (In Sum-Of-Products form) for this truth table, then use a Karnaugh map to simplify. Show your table and final equation \vspace{0.5cm} \\
+	
+	
+	\textbf{a)}
+	
+	\begin{center}
+	
+		\begin{tabular}{ |c|c|c|c| } 
+			\hline
+			\textbf{A}  \textbf{B}  \textbf{C} & \textbf{X}  \\
+			\hline
+			0      \     0     \      0          & 0    \\
+			0      \     0     \      1          & 0    \\
+			0      \     1     \      0          & 0    \\
+			0      \     1     \      1          & 1    \\
+			1      \     0     \      0          & 0    \\
+			1      \     0     \      1          & 1    \\
+			1      \     1     \      0          & 0    \\
+			1      \     1     \      1          & 1    \\
+			\hline
+			
+		\end{tabular} \vspace{0.6cm} \\
+		
+		\textbf{Sum-Of-Products form based upon the truth table: } \vspace{.2cm} \\
+		$f(A, B, C) = \overline{A}BC + A\overline{B}C + ABC$  \vspace{0.5cm} \\
+		
+		\textbf{Karnaugh Map based upon the truth table: } \vspace{.2cm}  \\
+		
+		\ \ \ \ \ \ \ \fbox{C} \\
+		
+		\begin{tabular}{ |c|c|c| } 
+		
+			\hline
+			
+			AB  & 0 & 1  \\
+			\hline
+			00 & 0 & 0  \\
+			\hline
+			01 & 0 & 1  \\
+			\hline
+			11 & 0 & 1  \\
+			\hline
+			10 & 0 & 1  \\
+			\hline
+			
+			
+		\end{tabular} \vspace{0.6cm} \\
+		
+		\textbf{Boolean expression based upon the Karnaugh Map: } \vspace{.2cm} \\
+		$f(A, B, C) = BC + AC$  \vspace{0.5cm} \\
+		
+		
+	\end{center}
+	
+	
+	
+	
+	
+	
+	
+	
+	\newpage
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	\noindent \fbox{\textbf{4.}} 
+	\ Give the equation (In Sum-Of-Products form) for this truth table, then use a Karnaugh map to simplify. Show your table and final equation \vspace{0.5cm} \\
+	
+	
+	\textbf{a)}
+	
+	\begin{center}
+		
+		\begin{tabular}{ |c|c|c|c|c| } 
+			\hline
+			\textbf{A}  \textbf{B}  \textbf{C} \textbf{D} & \textbf{X}  \\
+			\hline
+			0 \ 0 \ 0 \ 0 & 0 \\
+			0 \ 0 \ 0 \ 1 & 1 \\
+			0 \ 0 \ 1 \ 0 & 0 \\
+			0 \ 0 \ 1 \ 1 & 1 \\
+			0 \ 1 \ 0 \ 0 & 0 \\
+			0 \ 1 \ 0 \ 1 & 1 \\
+			0 \ 1 \ 1 \ 0 & 1 \\
+			0 \ 1 \ 1 \ 1 & 0 \\
+			1 \ 0 \ 0 \ 0 & 0 \\
+			1 \ 0 \ 0 \ 1 & 1 \\
+			1 \ 0 \ 1 \ 0 & 1 \\
+			1 \ 0 \ 1 \ 1 & 0 \\
+			1 \ 1 \ 0 \ 0 & 0 \\
+			1 \ 1 \ 0 \ 1 & 1 \\
+			1 \ 1 \ 1 \ 0 & 1 \\
+			1 \ 1 \ 1 \ 1 & 0 \\
+			\hline
+			
+		\end{tabular} \vspace{0.6cm} \\
+		
+		\textbf{Sum-Of-Products form based upon the truth table: } \vspace{.2cm} \\
+		$f(A, B, C) =$ \vspace{0.2cm}\\
+		$\overline{ABC}D + \overline{AB}CD + \overline{A}B\overline{C}D + \overline{A}BC\overline{D} + A\overline{BC}D + A\overline{B}C\overline{D} + AB\overline{C}D + ABC\overline{D}$  \vspace{0.5cm} \\
+		
+		\textbf{Karnaugh Map based upon the truth table: } \vspace{.2cm}  \\
+		
+		\ \ \ \ \ \ \ \fbox{CD} \\
+		
+		\begin{tabular}{ |c|c|c|c|c| } 
+			
+			\hline
+			
+			AB  & 00 & 01 & 11 & 10 \\
+			\hline
+			00  & 0  &  1 & 1  & 0  \\
+			\hline
+			01  & 0  &  1 & 0  & 1  \\
+			\hline
+			11  & 0  &  1 & 0  & 1  \\
+			\hline
+			10  & 0  &  1 & 0  & 1  \\
+			\hline
+			
+			
+		\end{tabular} \vspace{0.6cm} \\
+		
+		\textbf{Boolean expression based upon the Karnaugh Map: } \vspace{.2cm} \\
+		$f(A, B, C) = \overline{C}D + \overline{AB}D + BC\overline{D} + AC\overline{D}$  \vspace{0.5cm} \\
+		
+		
+		
+	
+	
+	
+		
+		
+	\end{center}
+	
+\end{document}          

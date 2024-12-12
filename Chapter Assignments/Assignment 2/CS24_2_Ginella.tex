@@ -1,0 +1,212 @@
+\documentclass[12pt]{article}
+\usepackage{calc}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+
+
+\rhead{Massimo Ginella}
+
+\begin{document}
+	\begin{center}
+		\textbf{CS24 Elementary Computer Organization} \\
+		\textbf{Chapter 2 Exercises: 2.3, 2.7, 2.13, 2.18} \vspace{0.5cm}
+	\end{center}
+	
+	
+	
+	
+	\noindent \fbox{\textbf{2.3}} 
+	[5] \textless2.2, 2.3\textgreater \ For the following C statement, write the corresponding RISC-V assembly code. Assume that the variables $f$, $g$, $h$, $i$, and $j$ are assigned to registers x$5$, x$6$, x$7$, x$28$, and x$29$ respectively. Assume that the base address of the arrays $A$ and $B$ are in registers x$10$ and x$11$, respectively. \vspace{0.15cm} \\
+	\begin{center}
+		
+		\begin{tabular}{ |c|c|c| } 
+			\hline
+			Variable & Numeric Register & Human Equivalent \\
+			\hline
+			$f$ & x$5$ & t0 \\ 
+			\hline
+			$g$ & x$6$  &  t1 \\ 
+			\hline
+			$h$ & x$7$  &  t2 \\ 
+			\hline
+			$i$ & x$28$  & t3 \\
+			\hline
+			$j$ & x$29$  &  t4 \\ 
+			\hline
+			$A$ & x$10$  &  a0 \\ 
+			\hline
+			$B$ & x$11$  &  a1 \\
+			\hline
+			
+		\end{tabular}
+		\vspace{0.8cm} \\
+		\fbox{\textbf{C Code:}} \vspace{0.3cm} \\
+		
+		B[8] = A[i - j]; \vspace{0.5cm} \\
+		
+		\fbox{\textbf{Equivalent in RISC-V:}} \vspace{0.08cm} \\
+		
+		\begin{flushleft}
+			\hspace{4cm} sub t0, t3, t4 \hspace{.7cm}  \# f = i - j \\
+			\hspace{4cm} slli t0, t0, 2 \hspace{1cm}  \# f = (i - j) * 4 \\
+			\hspace{4cm} add t1, a0, t0 \hspace{.63cm}  \# g = \& A[f] \\ 
+			\hspace{4cm} lw t2, 0(t1)  \hspace{1.04cm}   \# h = A[f]\\
+			\hspace{4cm} sw t2, 32(a1)  \hspace{.75cm}  \# B[8] = h\\
+		\end{flushleft}
+		
+		\end{center}
+		
+		
+		
+		
+		
+		\newpage
+		
+		
+		
+		
+		
+		\noindent \fbox{\textbf{2.7}} 
+		[5] \textless2.2, 2.3\textgreater \ Translate the following C code to RISC-V. Assume that the variables $f$, $g$, $h$, $i$, and $j$ are assigned to registers x$5$, x$6$, x$7$, x$28$, and x$29$ respectively. Assume that the base address of the arrays $A$ and $B$ are in registers x$10$ and x$11$, respectively. Assume that the arrays of $A$ and $B$ are 8-byte words. \vspace{0.15cm} \\
+		\begin{center}
+			
+			\begin{tabular}{ |c|c|c| } 
+				\hline
+				Variable & Numeric Register & Human Equivalent \\
+				\hline
+				$f$ & x$5$ & t0 \\ 
+				\hline
+				$g$ & x$6$  &  t1 \\ 
+				\hline
+				$h$ & x$7$  &  t2 \\ 
+				\hline
+				$i$ & x$28$  & t3 \\
+				\hline
+				$j$ & x$29$  &  t4 \\ 
+				\hline
+				$A$ & x$10$  &  a0 \\ 
+				\hline
+				$B$ & x$11$  &  a1 \\
+				\hline
+				
+			\end{tabular}
+			\vspace{0.8cm} \\
+			\fbox{\textbf{C Code:}} \vspace{0.3cm} \\
+			
+			B[8] = A[i] + A[j]; \vspace{0.5cm} \\
+			
+			\fbox{\textbf{Equivalent in RISC-V:}} \vspace{0.08cm} \\
+			
+			\begin{flushleft}
+				\hspace{4cm} slli t3, t3, 2 \hspace{.7cm}  \# i = i * 4 \\
+				\hspace{4cm} slli t4, t4, 2 \hspace{.7cm}  \# j = j * 4 \\
+				\hspace{4cm} add t0, a0, t3 \hspace{.33cm}  \# f = \& A[i]] \\ 
+				\hspace{4cm} add t1, a0, t4  \hspace{.34cm}  \# g = \& A[j]] \\ 
+				\hspace{4cm} lw t0, 0(t0)  \hspace{.75cm}  \# f = A[i]\\
+				\hspace{4cm} lw t1, 0(t1)  \hspace{.75cm}  \# g = A[j]\\
+				\hspace{4cm} add t0, t0, t1  \hspace{.43cm}   \# f = A[i] + A[j]\\
+				\hspace{4cm} sw t0, 32(a1)  \hspace{.45cm}   \# B[8] = f\\
+			\end{flushleft}
+			
+		\end{center}
+		
+		
+		
+		
+		
+		
+		\newpage
+		
+		
+		
+		
+		
+		
+		\noindent \fbox{\textbf{2.13}} 
+		[5] \textless2.2, 2.5\textgreater Provide the instruction type and hexadecimal representation of the following instruction: \vspace{0.15cm} \\
+		
+		\begin{center}
+			\fbox{Instruction:} \vspace{0.4cm}\\
+			sw x$5$, 32(x$30$)  \vspace{0.4cm}\\
+			\textbf{This is a Type-S Instruction:} \vspace{0.15cm}\\
+			\begin{tabular}{ |c|c|c|c|c|c| } 
+				\hline
+				6 bits & 5 bits & 5 bits & 3 bits & 5 bits & 7 bits \\
+				\hline
+				immediate [11 : 5] & rs2 & rs1 & funct3 & immediate[4:0] & opcode \\
+				\hline
+			\end{tabular}
+			 \vspace{0.6cm} \\
+			
+			\textbf{Fill in with instruction quantities:} \vspace{0.15cm}\\
+			\begin{tabular}{ |c|c|c|c|c|c| } 
+				\hline
+				6 bits & 5 bits & 5 bits & 3 bits & 5 bits & 7 bits \\
+				\hline
+				32 [11 : 5] & x$5$ & x$30$ & 010 & 32 [4:0] & 0100011 \\
+				\hline
+			\end{tabular}
+			\vspace{0.6cm} \\
+			
+			\textbf{Binary representation of quantities:} \vspace{0.15cm}\\
+			\begin{tabular}{ |c|c|c|c|c|c| } 
+				\hline
+				6 bits & 5 bits & 5 bits & 3 bits & 5 bits & 7 bits \\
+				\hline
+				0000001 & 00101 & 11110 & 010 & 00000 & 0100011 \\
+				\hline
+			\end{tabular}
+			\vspace{0.6cm} \\
+			
+			\textbf{Break binary line into sections of 4 bits for hexadecimal translation:} \vspace{0.15cm}\\
+			\begin{tabular}{ |c|c|c|c|c|c|c|c| } 
+				\hline
+				0000 & 0010 & 0101 & 1111 & 0010 & 0000 & 0010 & 0011 \\
+				\hline
+				0 & 2 & 5 & F & 2 & 0 & 2 & 3 \\
+				\hline
+			\end{tabular}
+			\vspace{0.6cm} \\
+			
+			\textbf{Representation of the above instruction in hexadecimal:} \vspace{0.15cm}\\
+			\fbox{025F2023} \\
+		\end{center}
+		
+		
+		
+		
+		
+		\newpage
+		
+		
+		
+		
+		
+		\noindent \fbox{\textbf{2.18}} 
+		[10] \textless2.6\textgreater Find the shortest sequence of RISC-V instructions that extracts bits 16 down to 11 from register x$5$ and uses the value of this field to replace bits 31 down to 26 in register x$6$ without changing the other bits of registers x$5$ or x$6$. (Be sure to test your code using x$5$ = 0 and x$6$ = 0xffffffffffffffff. Doing so may reveal a common oversight.) \vspace{0.15cm} \\
+		
+		\begin{center}
+			\begin{tabular}{ |c|c| } 
+				\hline
+				First Register & x5 \\
+				\hline
+				Second Register & x6 \\
+				\hline
+				Bit Mask Register & t0 \\
+				\hline
+			\end{tabular}
+			
+			\vspace{0.6cm}
+			\begin{flushleft}
+				\hspace{0.4cm} lui t0, 0x0000F \hspace{0.43cm} \# Load upper 20 bits of bitmask. t0 = 0x0000F000\\
+				\hspace{0.4cm} addi t0, t0, 0xC00 \# Add lower 12 bits of bitmask. t0 = 0x0000FC00\\
+				\hspace{0.4cm} and t0, x5, t0 \hspace{0.7cm} \# Copy x5[11 - 16] into t0 \\
+				\hspace{0.4cm} slli t0, t0, 16 \hspace{0.88cm} \# Move t0[11 - 16] to t0[27 - 32] \\
+				\hspace{0.4cm} slli x6, x6, 6 \hspace{0.99cm} \# Remove x6[27-32] to free up space \\
+				\hspace{0.4cm} srli x6, x6, 6 \hspace{1.15cm}\# Shift bits back into original position\\
+				\hspace{0.4cm} or x6, x6, t0  \hspace{0.99cm} \# Copy t0[27-32] into x6[27-32] \\
+			\end{flushleft}
+		\end{center}
+	
+\end{document}          

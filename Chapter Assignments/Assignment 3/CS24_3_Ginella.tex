@@ -1,0 +1,268 @@
+\documentclass[12pt]{article}
+\usepackage{calc}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+
+
+\rhead{Massimo Ginella}
+
+\begin{document}
+	\begin{center}
+		\textbf{CS24 Elementary Computer Organization} \\
+		\textbf{Chapter 3 Exercises: 3.3, 3.20, 3.21, 3.22, 3.23} \vspace{0.5cm}
+	\end{center}
+	
+	
+	
+	\noindent \fbox{\textbf{3.3}} 
+	[10] \textless3.2\textgreater \ Convert 5ED4 into a binary number. What makes base 16 (hexadecimal) an attractive numbering system for representing values in computers? \\
+	\begin{center}
+		
+		\begin{tabular}{ |c|c|c|c| } 
+			\hline
+			Hexadecimal & Binary & Hexadecimal & Binary  \\
+			\hline
+			0 & 0000 & 8 & 1000 \\ 
+			\hline
+			1 & 0001 & 9 & 1001 \\ 
+			\hline
+			2 & 0010 & A & 1010 \\ 
+			\hline
+			3 & 0011 & B & 1011 \\
+			\hline
+			4 & 0100 & C & 1100 \\ 
+			\hline
+			5 & 0101 & D & 1101 \\ 
+			\hline
+			6 & 0110 & E & 1110 \\
+			\hline
+			7 & 0111 & F & 1111 \\
+			\hline
+			
+		\end{tabular}
+		\vspace{0.8cm} \\
+		\fbox{\textbf{Binary Representation Based on the Chart:}} \vspace{0.3cm} \\
+		
+		\begin{tabular}{ |c|c|c|c| } 
+		\hline
+		F & E & D & 4 \\ 
+		\hline
+		0101 & 1110 & 1101 & 0100 \\ 
+		\hline
+		\end{tabular}
+		\vspace{0.5cm}
+		
+		\fbox{\textbf{Why is hexadecimal an attractive numbering system?}} \vspace{0.3cm} \\
+		Hexadecimal is an attractive numbering systems for both humans and computers alike. Using base 16 numbering makes it much easier to condense long bit patterns into more concise and easier to read patterns made up of 16 different characters. Its much easier for a human to interpret the meaning of characters 1 - F than a long sequence of 1's and 0's. Converting back and fourth between hexadecimal and binary is also an easy task. Not only this, but memory addresses in computers are represented in hexadecimal which makes allocating memory much easier to navigate for programmers.
+		
+		
+	\end{center}
+	
+	
+	
+	
+	
+	\newpage
+	
+	
+	
+	
+	
+	\noindent \fbox{\textbf{3.20}} 
+	[5] \textless3.5\textgreater \ What decimal number does the bit pattern 0X0C000000 represent if it is a twos complement integer? An unsigned integer?\\
+	\begin{center}
+
+		\fbox{\textbf{Convert hexadecimal into bits using above table:}} \vspace{0.3cm} \\
+		
+		0000 1100 0000 0000 0000 0000 0000 0000 \\
+		\vspace{0.3cm}
+		
+		Since the most significant bit in this binary sequence (which represents $-1 \times 2^{31}$) is zero, we know that this bit pattern is representing a positive number and is not the 2s complement counterpart of another bit pattern. Therefore, this pattern represents the following decimal number: \\ 
+		
+		\vspace{0.3cm}
+		\fbox{$(1 \times 2^{27}) + (1 \times 2^{26}) = 201,326,592$} \\
+		
+		\vspace{0.9cm}
+		
+		Because this bit pattern already represents a positive number, its unsigned counterpart will also be the same value.
+		
+		\vspace{0.3cm}
+		\fbox{$(1 \times 2^{27}) + (1 \times 2^{26}) = 201,326,592$} \\
+	\end{center}
+	
+	
+	
+	
+	
+	
+	\newpage
+	
+	
+	
+	
+	
+	
+	\noindent \fbox{\textbf{3.21}} 
+	[10] \textless3.5\textgreater If the bit pattern 0X0000006F is placed into the Instruction Register, what RISC-V instruction will be executed? \vspace{0.15cm} \\
+	
+	\begin{center}
+		\fbox{\textbf{Convert hexadecimal into bits using conversion table:}}
+		\vspace{0.3cm}\\
+		0000 0000 0000 0000 0000 0000 0110 1111
+		\vspace{0.3cm}\\
+		Looking at the last 7 bits tell us that the opcode is 1101111. We have a UJ instruction type. \vspace{0.3cm}\\
+		
+		\textbf{UJ Instruction Structure:} \vspace{0.15cm}\\
+		\begin{tabular}{ |c|c|c| } 
+			\hline
+			20 bits & 5 bits & 7 bits \\
+			\hline
+			imm[20][10:1][11][19:12] & rd & opcode \\
+			\hline
+		\end{tabular}
+		\vspace{0.6cm} \\
+		
+		\textbf{Fill in with the relevant bits:} \vspace{0.15cm}\\
+		\begin{tabular}{ |c|c|c| } 
+			\hline
+			20 bits & 5 bits & 7 bits \\
+			\hline
+			00000000000000000000 & 00000 & 1101111 \\
+			\hline
+		\end{tabular}
+		\vspace{0.6cm} \\
+		
+		\textbf{Rewrite in easily readable terms:} \vspace{0.15cm}\\
+		\begin{tabular}{ |c|c|c| } 
+			\hline
+			Immediate & Destination Register & Opcode \\
+			\hline
+			0x0000 & x0 & 1101111 \\
+			\hline
+		\end{tabular}
+		\vspace{0.6cm} \\
+		
+		Finally, rewrite it in the instruction format: \\
+		jal rd, immediate \vspace{0.6cm} \\
+
+		
+		\fbox{jal x0, 0x00000}
+		
+	\end{center}
+	
+	
+	
+	
+	
+	\newpage
+	
+	
+	
+	
+	
+	\noindent \fbox{\textbf{3.22}} 
+	[10] \textless3.5\textgreater What decimal number does the bit pattern 0X0C000000 represent if it is a floating point number? Use the IEEE 754 standard. \vspace{0.15cm} \\
+	
+	\begin{center}
+		\fbox{\textbf{Convert hexadecimal into bits using conversion table:}}
+		\vspace{0.3cm}\\
+		0000 1100 0000 0000 0000 0000 0000 0000  \vspace{0.3cm}\\
+		
+		Using the IEEE 754 standard method, we can retrieve the following information from this bit pattern: \vspace{0.3cm}
+		
+		\begin{tabular}{ |c|c| } 
+			\hline
+			Sign (MSB) & 0 \\
+			\hline
+			Exponent [30:23] & 00011000 = 24 \\
+			\hline
+			Significand [22:0] & 00000000000000000000000 \\
+			\hline
+		\end{tabular}
+		\vspace{0.6cm} \\
+		
+		Plug these values into the IEEE 754 formula: \vspace{0.3cm} \\ 
+		
+		$(-1)^{sign}\times(1+significand)\times(2)^{exponent - 127}$ \vspace{0.3cm} \\
+		
+		= \vspace{0.3cm} \\
+		
+		$(-1)^{0}\times(1.0)\times(2)^{24 - 127}$ \vspace{0.3cm} \\
+		
+		= \vspace{0.3cm} \\
+		
+		$1.0 \times 2^{-103}$ \vspace{0.3cm} \\
+		
+		Converting 1.0 from bits into a decimal float still yields 1.0: \vspace{0.3cm} \\
+		
+		\fbox{$1 \times 2^{-103} = 9.86 \times 10^{-32}$} 
+		
+		
+	\end{center}
+	
+	
+	
+	
+	\newpage
+	
+	
+	
+	
+	
+	\noindent \fbox{\textbf{3.23}} 
+	[10] \textless3.5\textgreater Write down the binary representation of the decimal number 63.25 assuming the IEEE 754 single precision format. \vspace{0.15cm} \\
+	
+	\begin{center}
+		63 in binary =  00111111 \\
+		0.25 in binary = ? \vspace{0.3cm} \\
+		
+		
+		\begin{tabular}{ |c|c|c| } 
+			\hline
+			Decimal Value & Decimal Value $\times$ 2 & Binary Value \\
+			\hline
+			0.25 & 0.5  & 0 \\
+			\hline
+			0.5  & 1.0  & 1 \\
+			\hline
+			0    & None & None \\
+			\hline
+		\end{tabular}
+		\vspace{0.3cm} \\
+		0.25 in binary = 01 \vspace{0.5cm} \\
+		
+		63.25 in pseudo-binary = 00111111.01  \vspace{0.5cm} \\
+		
+		Write in scientific notation: $1.1111101 \times 2^5$ \vspace{0.5cm} \\
+		
+		Compare the bit pattern to the following standard formula:\\
+		
+		$(-1)^{sign}\times(1+significand)\times(2)^{exponent - 127}$ \vspace{0.5cm} \\
+		
+		\begin{tabular}{ |c|c| } 
+			\hline
+			Sign        & 0 \\
+			\hline
+			Exponent    & Exp - 127 = 5 : Exp = 132 = 10000100\\
+			\hline
+			Significand & 1111101 \\
+			\hline
+		\end{tabular}
+		\vspace{0.5cm}  \\
+		
+		Format the information in the table above to IEEE 754 Single Precision Format: \vspace{0.5cm} \\
+		
+		Sign \hspace{0.1cm}  Exponent \hspace{0.1cm} Significand  \vspace{0.2cm} \\
+		
+		0 \hspace{0.2cm} 10000100 \hspace{0.1cm} 11111010000 \vspace{0.5cm}
+		
+		= \vspace{0.4cm}\\
+		
+		\fbox{0100 0010 0111 1101 0000 0000 0000 0000}
+		 
+		
+		
+	\end{center}
+	
+\end{document}          

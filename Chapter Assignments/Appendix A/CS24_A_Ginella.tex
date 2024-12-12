@@ -1,0 +1,272 @@
+\documentclass[12pt]{article}
+\usepackage{calc}
+\usepackage{fancyhdr}
+\usepackage{circuitikz}
+
+\pagestyle{fancy}
+
+
+\rhead{Massimo Ginella}
+
+\begin{document}
+	\begin{center}
+		\textbf{CS24 Elementary Computer Organization} \\
+		\textbf{Appendix A Exercises: A.1, A.3, A.5, A.7, A.17} \vspace{0.5cm}
+	\end{center}
+	
+	
+	
+	\noindent \fbox{\textbf{A.1}} 
+	[10] \textless A.2\textgreater \ In addition to the basic laws we discussed in this section, there are two important theorems, called DeMorgan's theorems: \\
+	\begin{center}
+		$\overline{A+B} = \overline{A}\times \overline{B}$ and $\overline{A \times B} = \overline{A} + \overline{B}$ \vspace{0.5cm} \\
+		
+		Prove DeMorgan's theorems with a truth table. \vspace{0.2cm} \\
+		\begin{tabular}{ |c|c|c|c|c|c|c|c| } 
+			\hline
+			A & B & $\overline{A}$ & $\overline{B}$ & $\overline{A + B}$ & $\overline{A} \times \overline{B}$ & $\overline{A \times B}$ & $\overline{A} + \overline{B}$\\
+			\hline
+			0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
+			\hline
+			0 & 1 & 1 & 0 & 0 & 0 & 1 & 1 \\ 
+			\hline
+			1 & 0 & 0 & 1 & 0 & 0 & 1 & 1 \\ 
+			\hline
+			1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+			\hline
+		\end{tabular}
+		\vspace{0.8cm} \\
+		
+		We can conclude that DeMorgan's theorems are correct given that the bit sequences for $\overline{A+B}$ are in fact equal to $\overline{A}\times \overline{B}$ and the bit sequences for $\overline{A \times B}$ are in fact equal to $\overline{A} + \overline{B}$
+		
+	\end{center}
+	
+	
+	
+	
+	
+	\newpage
+	
+	
+	
+	
+	
+	\noindent \fbox{\textbf{A.3}} 
+	[10] \textless A.2\textgreater \ Show that there are $2^n$ entries in a truth table for a function with n inputs. \\
+	\begin{center}
+		If you have a decoder, you \textbf{must} have $2^n$ outputs for every n inputs. The reason behind this is due to the fact that with $n$ inputs, you can represent every base 10 number up until $2^n$ with a binary representation that is $n$ bits long. In the context of a decoder, you can decode $2^n$ numbers with $n$ single bit inputs. \\
+	\end{center}
+	
+	
+	
+	
+	
+	
+	\newpage
+	
+	
+	
+	
+	
+	
+	\noindent \fbox{\textbf{A.5}} 
+	[15] \textless A.2\textgreater Prove that the NOR gate is universal by showing how to build the AND, OR, and NOT functions using a two input NOR gate. \vspace{0.15cm} \\
+
+	
+	\begin{center}
+		\fbox{AND} \vspace{0.2cm} \\
+		\begin{tabular}{ |c|c| }
+			\hline
+			A B & OUT \\
+			\hline
+			0 0 & 0 \\
+			\hline
+			0 1 & 0 \\
+			\hline
+			1 0 & 0 \\
+			\hline
+			1 1 & 1 \\
+			\hline
+			
+		\end{tabular}
+		\vspace{0.5cm} \\
+		\begin{circuitikz}[american]
+			\draw
+			(0,0) node[anchor=east] {} node[nor port] (nor1) {}
+			(nor1.out) -- ++(0.5,0) node[anchor=north] {}
+			(nor1.in 1) -- ++(0,1) node[anchor=south] {A}
+			(nor1.in 2) -- ++(0,-1) node[anchor=north] {GND (0)}
+			;
+			
+			\draw
+			(0,-5) node[anchor=east] {} node[nor port] (nor2) {}
+			(nor2.out) -- ++(0.5,0) node[anchor=north] {}
+			(nor2.in 1) -- ++(0,1) node[anchor=south] {B}
+			(nor2.in 2) -- ++(0,-1) node[anchor=north] {GND (0)}
+			;
+			
+			\draw
+			(4,-2.5) node[anchor=east] {} node[nor port] (nor3) {}
+			(nor1.out) -- ++(1,0) -- (nor3.in 1) {}
+			(nor2.out) -- ++(1,0) -- (nor3.in 2)
+			(nor3.out) -- ++(0.5,0) node[anchor=north] {OUT}
+			;
+			
+		\end{circuitikz}
+		\vspace{5cm} \\
+		\fbox{OR} \vspace{0.2cm} \\
+		\begin{tabular}{ |c|c| }
+			\hline
+			A B & OUT \\
+			\hline
+			0 0 & 0 \\
+			\hline
+			0 1 & 1 \\
+			\hline
+			1 0 & 1 \\
+			\hline
+			1 1 & 1 \\
+			\hline
+		\end{tabular}
+		\\
+		\begin{circuitikz}[american]
+			\draw
+			(0,0) node[anchor=east] {} node[nor port] (nor1) {}
+			(nor1.out) -- ++(0.5,0) node[anchor=north] {}
+			(nor1.in 1) -- ++(0,1) node[anchor=south] {A}
+			(nor1.in 2) -- ++(0,-1) node[anchor=north] {B}
+			;
+			
+			\draw
+			(0,-5) node[anchor=east] {} node[nor port] (nor2) {}
+			(nor2.out) -- ++(0.5,0) node[anchor=north] {}
+			(nor2.in 1) -- ++(0,1) node[anchor=south] {A}
+			(nor2.in 2) -- ++(0,-1) node[anchor=north] {B}
+			;
+			
+			\draw
+			(4,-2.5) node[anchor=east] {} node[nor port] (nor3) {}
+			(nor1.out) -- ++(1,0) -- (nor3.in 1) {}
+			(nor2.out) -- ++(1,0) -- (nor3.in 2)
+			(nor3.out) -- ++(0.5,0) node[anchor=north] {OUT}
+			;
+			
+		\end{circuitikz}
+		
+		\fbox{NOT} \vspace{0.2cm} \\
+		\begin{tabular}{ |c|c| }
+			\hline
+			A & OUT \\
+			\hline
+			0 & 1 \\
+			\hline
+			1 & 0 \\
+			\hline
+			
+		\end{tabular}
+		\vspace{0.3cm} \\
+		\begin{circuitikz}[american]
+			\draw
+			(0,0) node[anchor=east] {} node[nor port] (nor1) {}
+			(nor1.out) -- ++(0.5,0) node[anchor=north] {OUT}
+			(nor1.in 1) -- ++(0,1) node[anchor=south] {A}
+			(nor1.in 2) -- ++(0,-1) node[anchor=north] {GND(0)}
+			
+			;
+		\end{circuitikz}
+	\end{center}
+	
+	
+	
+	
+	
+	\newpage
+	
+	
+	
+	
+	
+	\noindent \fbox{\textbf{A.7}} 
+	[10] \textless A.2, A.3\textgreater Construct the truth table for a four input odd parity function (see page A-65 for a description of parity) \vspace{0.15cm} \\
+	
+	\begin{center}
+		A parity is defined as a count of 1's in a word. The word has odd parity if the number of 1's is odd. We will base our truth table off of this information. \vspace{0.5cm} \\
+		
+		\begin{tabular}{ |c|c| }
+			\hline
+			A B C D & Odd Number of 1's? \\
+			\hline
+			0 0 0 0 & 0 \\
+			\hline
+			0 0 0 1 & 1 \\
+			\hline
+			0 0 1 0 & 1 \\
+			\hline
+			0 0 1 1 & 0 \\
+			\hline
+			0 1 0 0 & 1 \\
+			\hline
+			0 1 0 1 & 0 \\
+			\hline
+			0 1 1 0 & 0 \\
+			\hline
+			0 1 1 1 & 1 \\
+			\hline
+			1 0 0 0 & 1 \\
+			\hline
+			1 0 0 1 & 0 \\
+			\hline
+			1 0 1 0 & 0 \\
+			\hline
+			1 0 1 1 & 1 \\
+			\hline
+			1 1 0 0 & 0 \\
+			\hline
+			1 1 0 1 & 1 \\
+			\hline
+			1 1 1 0 & 1 \\
+			\hline
+			1 1 1 1 & 0 \\
+			\hline
+
+		\end{tabular}
+		
+	\end{center}
+	
+	
+	
+	
+	\newpage
+	
+	
+
+	\noindent \fbox{\textbf{A.17}} 
+	[5] \textless A.2, A.3\textgreater Show a truth table for a multiplexor (inputs A, B, and S; output C), using don't cares to simplify the table where possible. \vspace{0.15cm} \\
+	
+	\begin{center}
+		Assuming the 'on' channel for A is set to 0 and the 'on' channel for B is set to 1, we will have the following truth table for a two input (A and B), one selector (S), and one output (C), multiplexor:  \vspace{0.75cm} \\
+		
+		\begin{tabular} { |c|c| }
+			\hline
+			S A B & C \\
+			\hline
+			0 0 0 & 0 \\
+			\hline
+			0 0 1 & 0 \\
+			\hline
+			0 1 0 & 1 \\
+			\hline
+			0 1 1 & 1 \\
+			\hline
+			1 0 0 & 0 \\
+			\hline
+			1 0 1 & 1 \\
+			\hline
+			1 1 0 & 0 \\
+			\hline
+			1 1 1 & 1 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+\end{document}          

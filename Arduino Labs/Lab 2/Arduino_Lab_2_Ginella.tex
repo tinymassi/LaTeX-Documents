@@ -1,0 +1,41 @@
+\documentclass[12pt]{article}
+\usepackage{calc}
+\usepackage{graphicx}
+
+\usepackage{hyperref}
+
+\begin{document}
+	\begin{center}
+		Massimo Ginella \\
+		CS24 Elementary Computer Organization \\
+		Second Arduino Lab \\
+		Lab time: 16 Hours \vspace{0.5cm} \\
+	\end{center}
+	
+	\begin{center}
+		
+		\textbf{Its Not a Bomb Countdown Timer:} \vspace{0.1cm} \\
+		\setlength{\fboxrule}{8pt}
+		\begin{figure}[h]
+			\centering
+			\fbox{\includegraphics[width=12cm]{/home/massimo/CS-24/Arduino_Labs/Lab_2/timer_1.jpg}} % Specify the path and filename
+			\caption{Wiring view with the timer initialized to the maximum time.} % Optional caption
+		\end{figure}
+		
+		\newpage
+		
+		\begin{figure}[t!]
+			\centering
+			\fbox{\includegraphics[width=12cm]{/home/massimo/CS-24/Arduino_Labs/Lab_2/timer_2.jpg}} % Specify the path and filename
+			\caption{Utilizing the rotary encoder to change the value of the timer.} % Optional caption
+			\label{fig:my_label} % Optional label for referencing
+		\end{figure}
+		
+		
+	\end{center}
+	
+	This lab was certainly a big step up in difficulty from the last one. It was difficult grasping how each piece of hardware worked before I could utilize it in the lab. I spent a lot of time mapping how my outputs from the shift registers would connect to my 7-segment displays regarding the binary sequences that would be utilized to represent the numbers 1 - 9. I found the PDF's linked in the assignment description to be a great help regarding circuit diagrams for each piece of hardware. I really enjoy these arduino projects as I find picking the configuration of all the wires to be really satisfying. I encountered quite a few bugs during this lab. Most notably, the push button feature on the rotary encoder was not working with the code that I wrote. To fix this, I used a bunch of Serial.println() functions to debug where the signal was going in my code and eventually fixed the issue. After a lot of trial and error, I was eventually able to complete the lab in its entirety with all the specs. It felt incredibly satisfying having each feature of the build work 100\% of the time! I really enjoyed this class as well as these labs and I will certainly be starting a bunch of arduino projects over winter break!\\
+	
+	
+	
+\end{document}  
